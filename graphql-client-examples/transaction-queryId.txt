@@ -1,0 +1,10 @@
+{
+  transaction(id:"5b2721e7-023b-4993-830e-98ff17ee7cf0"){
+    _id,
+    accountExternalIdDebit,
+    accountExternalIdCredit,
+    tranferTypeId,
+    value,
+    status
+  }
+}

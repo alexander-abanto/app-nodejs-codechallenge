@@ -1,0 +1,59 @@
+mutation{
+  createTransaction(input:{
+    accountExternalIdDebit:"5e67816f-44ae-4bcf-9c2c-9eb14959482f",
+    accountExternalIdCredit:"b09ba08d-8d33-4910-948e-86c392b2646c",
+    tranferTypeId:1,
+    value:1000
+  }),{
+    _id,
+    accountExternalIdDebit,
+    accountExternalIdCredit,
+    tranferTypeId,
+    status
+  }
+}
+
+mutation{
+  createTransaction(input:{
+    accountExternalIdDebit:"515dd776-fc9b-49b8-b312-0dfcbd88157e",
+    accountExternalIdCredit:"0180885b-b55b-40de-b830-eb2305d020b6",
+    tranferTypeId:1,
+    value:2000
+  }),{
+    _id,
+    accountExternalIdDebit,
+    accountExternalIdCredit,
+    tranferTypeId,
+    status
+  }
+}
+
+mutation{
+  createTransaction(input:{
+    accountExternalIdDebit:"d725fcc1-4405-423d-8db1-a0e2f85a0118",
+    accountExternalIdCredit:"1f06aaa7-b802-4050-b339-b3c54bec6524",
+    tranferTypeId:2,
+    value:100
+  }),{
+    _id,
+    accountExternalIdDebit,
+    accountExternalIdCredit,
+    tranferTypeId,
+    status
+  }
+}
+
+mutation{
+  createTransaction(input:{
+    accountExternalIdDebit:"d725fcc1-4405-423d-8db1-a0e2f85a0119",
+    accountExternalIdCredit:"1f06aaa7-b802-4050-b339-b3c54bec6526",
+    tranferTypeId:2,
+    value:0
+  }),{
+    _id,
+    accountExternalIdDebit,
+    accountExternalIdCredit,
+    tranferTypeId,
+    status
+  }
+}

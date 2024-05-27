@@ -1,16 +1,58 @@
-version: "3.7"
+version: "3.8"
 services:
-  postgres:
-    image: postgres:14
+  trans-api:
+    container_name: t-api
+    restart: always
+    build: ./transaction-api
+      # context: .
+      # target: development
+      # dockerfile: ./Dockerfile
     ports:
-      - "5432:5432"
+      - 5000:5000
+    networks:
+      - yape-network
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - PORT=5000
+    depends_on: 
+      - mongo
+      - kafka
+  antifraud-api:
+    container_name: af-api
+    restart: always
+    build: ./anti-fraud-api
+      # context: .
+      # target: development
+      # dockerfile: ./Dockerfile
+    ports:
+      - 5001:5001
+    networks:
+      - yape-network
+    environment:
+      - PORT=5001
+    depends_on: 
+      - mongo
+      - kafka
+  mongo:
+    hostname: 'mongo-yape'
+    ports:
+      - 27017:27017
+    networks:
+      - yape-network
+    container_name: mongo-yape
+    restart: always
+    logging:
+        options:
+          max-size: 1g
+    environment:
+        - MONGO_INITDB_ROOT_USERNAME=admin
+        - MONGO_INITDB_ROOT_PASSWORD=admin
+    image: mongo
   zookeeper:
     image: confluentinc/cp-zookeeper:5.5.3
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - yape-network
   kafka:
     image: confluentinc/cp-enterprise-kafka:5.5.3
     depends_on: [zookeeper]
@@ -23,3 +65,8 @@ services:
       KAFKA_JMX_PORT: 9991
     ports:
       - 9092:9092
+    networks:
+      - yape-network
+networks:
+  yape-network:
+    driver: bridge

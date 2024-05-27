@@ -1,0 +1,13 @@
+{
+  transactions{
+    transactionExternalId,
+    transactionType{
+      name
+    },
+    transactionStatus{
+      name
+    },
+    value,
+    createdAt
+  }
+}
